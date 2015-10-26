@@ -24,13 +24,22 @@ RemainingDice.prototype.rollTheDice = function() {
 RemainingDice.prototype.scoreDie = function(id) {
   var die = this.collection[id - 1];
   this.collection.splice(id - 1, 1);
-  if(die.value === 3) {
+  if (die.value === 3) {
     return 0
   } else {
 
     return die.value;
   }
-  console.log("VALUE: " + die.value);
-
+};
+RemainingDice.prototype.scoreTwoDice = function(firstDieTaken, secondDieTaken) {
+  var score = 0
+  if (parseInt(firstDieTaken) >= secondDieTaken) {
+    score += this.scoreDie(firstDieTaken);
+    score += this.scoreDie(secondDieTaken);
+  } else {
+    score += this.scoreDie(secondDieTaken);
+    score += this.scoreDie(firstDieTaken);
+  }
+  return score;
 };
 module.exports = RemainingDice;

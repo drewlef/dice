@@ -8,28 +8,27 @@ var readline = require('readline').createInterface({
   output: process.stdout
 });
 var playDice = function() {
-  //TODO: this is in the wrong place
-  console.log("\n\n\n\n\nSIZE: " + remainingDice.collection.length);
   if (remainingDice.collection.length > 0) {
     console.log("\nSCORE: " + score);
     remainingDice.rollTheDice();
     readline.question("\nenter the id of the die you would like to keep\n", function(firstDieTaken) {
-      score += remainingDice.scoreDie(firstDieTaken);
       if (!playerHasTakenTwoDice && remainingDice.collection.length > 0) {
-        remainingDice.displayRemaining();
-        readline.question("\nYou have the option to take a second die once (type no to decline)\n", function(secondDieTaken) {
-          if (secondDieTaken !== "no") {
-            score += remainingDice.scoreDie(secondDieTaken);
+        readline.question("\nYou have the option to take a second die once (enter to decline)\n", function(secondDieTaken) {
+          if (secondDieTaken !== "") {
+            score += remainingDice.scoreTwoDice(firstDieTaken, secondDieTaken);
             playerHasTakenTwoDice = true;
+          } else {
+            score += remainingDice.scoreDie(firstDieTaken);
           }
           playDice();
         });
       } else {
+        score += remainingDice.scoreDie(firstDieTaken);
         playDice();
       }
     });
   } else {
-    console.log("Your score is: " + score);
+    console.log("GAME OVER! SCORE: " + score + "\n\n\n");
     start();
   }
 };
