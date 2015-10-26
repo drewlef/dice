@@ -7,4 +7,4 @@ rolls they must take at least one die and has the option of taking
 a second only ONLY once a game. The user tries to achieve the lowest
 score with threes counting as zero
 
-# node diceGame.js to play
+# type 'node diceGame.js' to play
