@@ -7,12 +7,13 @@ var Die = require('./classes/die.js');
 var RemainingDice = require('./classes/remainingDice.js');
 
 var score;
+//boolean to track if the player should be prompted to take a second die
 var playerHasTakenTwoDice;
 var remainingDice;
 
 //remove and score a second die, if the user selects one
 var promptSecondDie = function(firstDieTaken) {
-  readline.question("\nYou have the option to take a second die once (enter to decline)\n", function(secondDieTaken) {
+  readline.question("\nYou have the option to take a second die once (hit enter to decline)\n", function(secondDieTaken) {
     if (secondDieTaken !== "" && secondDieTaken !== firstDieTaken) {
       score += remainingDice.removeAndScoreTwoDice(firstDieTaken, secondDieTaken);
       playerHasTakenTwoDice = true;
