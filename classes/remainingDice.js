@@ -12,9 +12,9 @@ var RemainingDice = function() {
 
 //display the values of the remaining dice
 RemainingDice.prototype.displayRemaining = function() {
-  console.log("\nREMAINING DICE:\n")
+  console.log("\nREMAINING DICE:\n");
   for (var i = 0; i < this.collection.length; i++) {
-    console.log((i + 1) + ": " + this.collection[i].value)
+    console.log((i + 1) + ": " + this.collection[i].value);
   }
 };
 
@@ -31,7 +31,7 @@ RemainingDice.prototype.removeAndScoreDie = function(id) {
   var die = this.collection[id - 1];
   this.collection.splice(id - 1, 1);
   if (die.value === 3) {
-    return 0
+    return 0;
   } else {
     return die.value;
   }
@@ -40,7 +40,7 @@ RemainingDice.prototype.removeAndScoreDie = function(id) {
 //removes two dice and returns the score or the two. This function is necessary to ensure the
 //order the dice are removed in the correct order
 RemainingDice.prototype.removeAndScoreTwoDice = function(firstDieTaken, secondDieTaken) {
-  var score = 0
+  var score = 0;
   if (parseInt(firstDieTaken) >= secondDieTaken) {
     score += this.removeAndScoreDie(firstDieTaken);
     score += this.removeAndScoreDie(secondDieTaken);
